@@ -1,0 +1,14 @@
+.container-geral {
+  background: linear-gradient(0.25turn, #55ff9f, #ffff7f);
+  height: 100px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img{
+  max-width: 25%;
+  height: auto;
+}

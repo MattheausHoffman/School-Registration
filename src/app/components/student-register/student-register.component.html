@@ -1,88 +1,109 @@
 <div class="container my-5">
-    <h2 class="text-center mb-4">Formulário para registro do aluno</h2>
-    <form>
-      <fieldset class="border p-4 mb-4 rounded">
-        <legend class="w-auto px-2">Informações Gerais</legend>
+  <h2 class="text-center mb-4">Formulário para registro do aluno</h2>
+  <form>
+    <fieldset class="border p-4 mb-4 rounded">
+      <legend class="w-auto">Informações Gerais</legend>
 
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" placeholder="Nome">
-          </div>
-          <div class="col-md-6">
-            <label for="sobrenome" class="form-label">Sobrenome</label>
-            <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome">
-          </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nome" class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            placeholder="Nome"
+          />
         </div>
-
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" placeholder="exemplo@exemplo.com">
-          </div>
-          <div class="col-md-6">
-            <label for="telefone" class="form-label">Telefone</label>
-            <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000">
-          </div>
+        <div class="col-md-6">
+          <label for="sobrenome" class="form-label">Sobrenome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="sobrenome"
+            placeholder="Sobrenome"
+          />
         </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label class="form-label">Data de Nascimento</label>
-            <div class="d-flex gap-2">
-              <select class="form-select">
-                <option>Por favor</option>
-                <option>01</option>
-                <!-- Adicione outros dias -->
-              </select>
-              <select class="form-select">
-                <option>Por favor</option>
-                <option>Janeiro</option>
-                <!-- Adicione outros meses -->
-              </select>
-              <select class="form-select">
-                <option>Por favor</option>
-                <option>2000</option>
-                <!-- Adicione outros anos -->
-              </select>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="genero" class="form-label">Gênero</label>
-            <select class="form-select" id="genero">
-              <option selected>Selecione</option>
-              <option>Masculino</option>
-              <option>Feminino</option>
-              <option>Outro</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label for="idAluno" class="form-label">ID do Aluno</label>
-            <input type="text" class="form-control" id="idAluno" placeholder="ex: 2345678">
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label for="anoIngresso" class="form-label">Ano de Ingresso</label>
-            <input type="text" class="form-control" id="anoIngresso" placeholder="ex: 2020">
-          </div>
-          <div class="col-md-4">
-            <label for="serieAno" class="form-label">Série/Ano</label>
-            <input type="text" class="form-control" id="serieAno">
-          </div>
-          <div class="col-md-4">
-            <label for="semestre" class="form-label">Semestre</label>
-            <select class="form-select" id="semestre">
-              <option selected>Selecione</option>
-              <option>1º Semestre</option>
-              <option>2º Semestre</option>
-            </select>
-          </div>
-        </div>
-      </fieldset>
-
-      <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">Próximo</button>
       </div>
-    </form>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="exemplo@exemplo.com"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="telefone"
+            placeholder="(00) 00000-0000"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Data de Nascimento</label>
+          <div class="d-flex gap-2">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Data de nascimento</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="birthDate"
+                placeholder="dd/mm/aaaa"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="genero" class="form-label">Gênero</label>
+          <select class="form-select" id="genero">
+            <option selected>Selecione</option>
+            <option>Masculino</option>
+            <option>Feminino</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="idAluno" class="form-label">ID do Aluno</label>
+          <input
+            type="text"
+            class="form-control"
+            id="idAluno"
+            placeholder="ex: 01608654"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="serieAno" class="form-label">Série/Ano</label>
+          <input type="text" class="form-control" id="serieAno" />
+        </div>
+        <div class="col-md-4">
+          <label for="semestre" class="form-label">Semestre</label>
+          <select class="form-select" id="semestre">
+            <option selected>Selecione</option>
+            <option>1º Semestre</option>
+            <option>2º Semestre</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary">Próximo</button>
+    </div>
+    </fieldset>
+  </form>
+</div>

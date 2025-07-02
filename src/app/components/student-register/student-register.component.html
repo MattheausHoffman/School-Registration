@@ -50,12 +50,11 @@
         <div class="col-md-6">
           <label class="form-label">Data de Nascimento</label>
           <div class="d-flex gap-2">
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="datepicker-small w-100">
               <mat-label>Data de nascimento</mat-label>
               <input
                 matInput
                 [matDatepicker]="picker"
-                formControlName="birthDate"
                 placeholder="dd/mm/aaaa"
               />
               <mat-datepicker-toggle
@@ -102,8 +101,8 @@
         </div>
       </div>
       <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary">Próximo</button>
-    </div>
+        <button type="submit" class="btn btn-primary">Próximo</button>
+      </div>
     </fieldset>
   </form>
 </div>

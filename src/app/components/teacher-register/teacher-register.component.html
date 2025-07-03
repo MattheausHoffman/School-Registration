@@ -1,1 +1,97 @@
-<p>teacher-register works!</p>
+<div class="container my-5">
+  <h2 class="text-center mb-4">Formulário para registro do professor</h2>
+  <form>
+    <fieldset class="border p-4 mb-4 rounded">
+      <legend class="w-auto">Informações Gerais</legend>
+
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <label for="nome" class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            placeholder="Ex: Mattheaus"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="sobrenome" class="form-label">Sobrenome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="sobrenome"
+            placeholder="Ex: Hoffman"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="exemplo@exemplo.com"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="telefone"
+            placeholder="(00) 00000-0000"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Data de Nascimento</label>
+          <div class="d-flex gap-2">
+            <mat-form-field appearance="outline" class="datepicker-small w-100">
+              <mat-label>Data de nascimento</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="dd/mm/aaaa"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="genero" class="form-label">Gênero</label>
+          <select class="form-select" id="genero">
+            <option disabled selected>Selecione</option>
+            <option>Masculino</option>
+            <option>Feminino</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-5 align-items-end">
+        <div class="col-md-6">
+          <label for="cpfProfessor" class="form-label">CPF do Professor</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cpfProfessor"
+            placeholder="000.000.000-00"
+          />
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary w-100">Próximo</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

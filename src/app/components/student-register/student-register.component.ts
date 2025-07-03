@@ -35,4 +35,9 @@ export class StudentRegisterComponent {
     event.preventDefault();
     this.loginRequest.emit();
   }
+
+  isInvalid(controlName: string): boolean {
+  const control = this.studentForm.get(controlName);
+  return !!control && control.invalid && control.touched;
+}
 }

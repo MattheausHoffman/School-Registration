@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -20,17 +21,16 @@ export class TeacherRegisterComponent {
     cpfProfessor: ''
   };
 
-  goToLogin(event: Event, form: any) {
-    event.preventDefault();
+  goToLogin(event: Event, form?: NgForm): void {
+  event.preventDefault();
 
-    if (form.valid) {
-      this.loginRequest.emit();
-    } else {
-      // Marca os campos como "tocados" para disparar as mensagens de erro
-      Object.values(form.controls).forEach((control: any) => {
-        control.markAsTouched();
-      });
-    }
+  // Só bloqueia se for um submit real do form
+  if (form && form.submitted && form.invalid) {
+    return;
   }
+
+  this.loginRequest.emit(); // ou navegação
+}
+
 }
 

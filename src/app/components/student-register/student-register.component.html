@@ -15,7 +15,9 @@
             id="nome"
             formControlName="nome"
             placeholder="Ex: Mattheaus"
+            [ngClass]="{ 'is-invalid': isInvalid('nome') }"
           />
+          <div class="invalid-feedback">Nome é obrigatório.</div>
         </div>
         <div class="col-md-6">
           <label for="sobrenome" class="form-label">Sobrenome</label>
@@ -25,7 +27,9 @@
             id="sobrenome"
             formControlName="sobrenome"
             placeholder="Ex: Hoffman"
+            [ngClass]="{ 'is-invalid': isInvalid('sobrenome') }"
           />
+          <div class="invalid-feedback">Sobrenome é obrigatório.</div>
         </div>
       </div>
 
@@ -39,7 +43,12 @@
             id="email"
             formControlName="email"
             placeholder="exemplo@exemplo.com"
+            [ngClass]="{ 'is-invalid': isInvalid('email') }"
           />
+          <div class="invalid-feedback">
+            <div *ngIf="studentForm.get('email')?.errors?.['required']">E-mail é obrigatório.</div>
+            <div *ngIf="studentForm.get('email')?.errors?.['email']">Formato de e-mail inválido.</div>
+          </div>
         </div>
         <div class="col-md-6">
           <label for="telefone" class="form-label">Telefone</label>
@@ -50,7 +59,9 @@
             formControlName="telefone"
             placeholder="(00) 00000-0000"
             mask="(00) 00000-0000"
+            [ngClass]="{ 'is-invalid': isInvalid('telefone') }"
           />
+          <div class="invalid-feedback">Telefone é obrigatório.</div>
         </div>
       </div>
 
@@ -65,23 +76,30 @@
               [matDatepicker]="picker"
               formControlName="dataNascimento"
               placeholder="dd/mm/aaaa"
+              [ngClass]="{ 'is-invalid': isInvalid('dataNascimento') }"
             />
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
+          <div class="text-danger small" *ngIf="isInvalid('dataNascimento')">
+            Data de nascimento é obrigatória.
+          </div>
         </div>
 
         <div class="col-md-6">
           <label for="genero" class="form-label">Gênero</label>
-          <select class="form-select" id="genero" formControlName="genero">
+          <select
+            class="form-select"
+            id="genero"
+            formControlName="genero"
+            [ngClass]="{ 'is-invalid': isInvalid('genero') }"
+          >
             <option value="" disabled>Selecione</option>
             <option>Masculino</option>
             <option>Feminino</option>
             <option>Outro</option>
           </select>
+          <div class="invalid-feedback">Gênero é obrigatório.</div>
         </div>
       </div>
 
@@ -96,7 +114,9 @@
             formControlName="cpfAluno"
             placeholder="000.000.000-00"
             mask="000.000.000-00"
+            [ngClass]="{ 'is-invalid': isInvalid('cpfAluno') }"
           />
+          <div class="invalid-feedback">CPF é obrigatório.</div>
         </div>
         <div class="col-md-4">
           <label for="serieAno" class="form-label">Série/Ano</label>
@@ -106,15 +126,23 @@
             id="serieAno"
             formControlName="serieAno"
             placeholder="ex: 9 ano"
+            [ngClass]="{ 'is-invalid': isInvalid('serieAno') }"
           />
+          <div class="invalid-feedback">Série/Ano é obrigatório.</div>
         </div>
         <div class="col-md-4">
           <label for="semestre" class="form-label">Semestre</label>
-          <select class="form-select" id="semestre" formControlName="semestre">
+          <select
+            class="form-select"
+            id="semestre"
+            formControlName="semestre"
+            [ngClass]="{ 'is-invalid': isInvalid('semestre') }"
+          >
             <option value="" disabled>Selecione</option>
             <option>1º Semestre</option>
             <option>2º Semestre</option>
           </select>
+          <div class="invalid-feedback">Semestre é obrigatório.</div>
         </div>
       </div>
 
@@ -124,7 +152,6 @@
           type="submit"
           class="btn btn-primary col-md-3"
           [disabled]="!studentForm.valid"
-          (click)="goToLogin($event)"
         >
           Próximo
         </button>

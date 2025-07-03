@@ -11,13 +11,10 @@ import { StudentRegisterComponent } from './components/student-register/student-
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import {
-  MatNativeDateModule,
-  MAT_DATE_FORMATS,
-  DateAdapter,
-} from '@angular/material/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MY_DATE_FORMATS } from './models/date-format';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -45,11 +42,14 @@ registerLocaleData(localePt);
     MatInputModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    NgxMaskDirective
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+    provideNgxMask(),
   ],
   bootstrap: [AppComponent],
 })

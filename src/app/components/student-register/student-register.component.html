@@ -4,14 +4,14 @@
     <fieldset class="border p-4 mb-4 rounded">
       <legend class="w-auto">Informações Gerais</legend>
 
-      <div class="row mb-3">
+      <div class="row mb-5">
         <div class="col-md-6">
           <label for="nome" class="form-label">Nome</label>
           <input
             type="text"
             class="form-control"
             id="nome"
-            placeholder="Nome"
+            placeholder="Ex: Mattheaus"
           />
         </div>
         <div class="col-md-6">
@@ -20,12 +20,12 @@
             type="text"
             class="form-control"
             id="sobrenome"
-            placeholder="Sobrenome"
+            placeholder="Ex: Hoffman"
           />
         </div>
       </div>
 
-      <div class="row mb-3">
+      <div class="row mb-5">
         <div class="col-md-6">
           <label for="email" class="form-label">E-mail</label>
           <input
@@ -69,7 +69,7 @@
         <div class="col-md-6">
           <label for="genero" class="form-label">Gênero</label>
           <select class="form-select" id="genero">
-            <option selected>Selecione</option>
+            <option disabled selected>Selecione</option>
             <option>Masculino</option>
             <option>Feminino</option>
             <option>Outro</option>
@@ -77,24 +77,24 @@
         </div>
       </div>
 
-      <div class="row mb-3">
+      <div class="row mb-5">
         <div class="col-md-4">
-          <label for="idAluno" class="form-label">ID do Aluno</label>
+          <label for="cpfAluno" class="form-label">CPF do Aluno</label>
           <input
             type="text"
             class="form-control"
-            id="idAluno"
-            placeholder="ex: 01608654"
+            id="cpfAluno"
+            placeholder="000.000.000-00"
           />
         </div>
         <div class="col-md-4">
           <label for="serieAno" class="form-label">Série/Ano</label>
-          <input type="text" class="form-control" id="serieAno" />
+          <input type="text" class="form-control" id="serieAno" placeholder="ex: 9 ano" />
         </div>
         <div class="col-md-4">
           <label for="semestre" class="form-label">Semestre</label>
           <select class="form-select" id="semestre">
-            <option selected>Selecione</option>
+            <option disabled selected>Selecione</option>
             <option>1º Semestre</option>
             <option>2º Semestre</option>
           </select>

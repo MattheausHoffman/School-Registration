@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'School-Registration';
+  selectedForm: 'student' | 'teacher' | null = 'student';
 }

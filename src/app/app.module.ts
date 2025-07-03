@@ -11,12 +11,17 @@ import { StudentRegisterComponent } from './components/student-register/student-
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import {
+  MatNativeDateModule,
+  MAT_DATE_FORMATS,
+  DateAdapter,
+} from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MY_DATE_FORMATS } from '../../src/app/components/student-register/date-format';
+import { MY_DATE_FORMATS } from './models/date-format';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { TeacherRegisterComponent } from './components/teacher-register/teacher-register.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -26,6 +31,7 @@ registerLocaleData(localePt);
     HeaderComponent,
     FooterComponent,
     StudentRegisterComponent,
+    TeacherRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,12 +41,12 @@ registerLocaleData(localePt);
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

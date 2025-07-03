@@ -22,6 +22,7 @@ import { MY_DATE_FORMATS } from './models/date-format';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { TeacherRegisterComponent } from './components/teacher-register/teacher-register.component';
+import { LoginComponent } from './components/login/login.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -32,6 +33,7 @@ registerLocaleData(localePt);
     FooterComponent,
     StudentRegisterComponent,
     TeacherRegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

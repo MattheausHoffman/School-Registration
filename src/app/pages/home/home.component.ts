@@ -7,5 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  @Input() selectedForm: 'student' | 'teacher' | null = null;
+  @Input() selectedForm: 'student' | 'teacher' | 'login' | null = null;
+
+  changeToLogin() {
+    this.selectedForm = 'login';
+  }
 }

@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh">
+  <div class="card p-5 shadow-sm" style="width: 100%; max-width: 400px; border-radius: 12px;">
+    <h4 class="text-center mb-5">Login</h4>
+
+    <form>
+      <!-- Email -->
+      <div class="mb-4">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          placeholder="email@exemplo.com"
+          required
+        />
+      </div>
+
+      <!-- Senha -->
+      <div class="mb-4">
+        <label for="senha" class="form-label">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          class="form-control"
+          placeholder="********"
+          required
+        />
+      </div>
+
+      <!-- Botão Entrar -->
+      <div class="d-grid mt-5">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </div>
+
+      <!-- Link para voltar -->
+      <div class="text-center mt-4">
+        <a href="#" (click)="goBack($event)">Voltar para cadastro</a>
+      </div>
+    </form>
+  </div>
+</div>

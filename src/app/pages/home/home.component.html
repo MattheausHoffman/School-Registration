@@ -1,6 +1,18 @@
 <div class="d-flex justify-content-center container-geral">
   <div class="d-flex justify-content-center register-container">
-    <app-student-register *ngIf="selectedForm === 'student'"></app-student-register>
-    <app-teacher-register *ngIf="selectedForm === 'teacher'"></app-teacher-register>
+    <app-student-register
+      *ngIf="selectedForm === 'student'"
+      (loginRequest)="changeToLogin()"
+    ></app-student-register>
+
+    <app-teacher-register
+      *ngIf="selectedForm === 'teacher'"
+      (loginRequest)="changeToLogin()"
+    ></app-teacher-register>
+
+    <app-login
+      *ngIf="selectedForm === 'login'"
+      (backToRegister)="selectedForm = 'student'"
+    ></app-login>
   </div>
 </div>

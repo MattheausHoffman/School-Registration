@@ -23,6 +23,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { TeacherRegisterComponent } from './components/teacher-register/teacher-register.component';
 import { LoginComponent } from './components/login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -44,6 +45,7 @@ registerLocaleData(localePt);
     MatInputModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

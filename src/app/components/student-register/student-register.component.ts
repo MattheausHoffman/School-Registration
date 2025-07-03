@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-student-register',
@@ -8,6 +9,27 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class StudentRegisterComponent {
   @Output() loginRequest = new EventEmitter<void>();
+  studentForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.studentForm = this.fb.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      cpfAluno: ['', Validators.required],
+      serieAno: ['', Validators.required],
+      semestre: ['', Validators.required],
+    });
+  }
+
+  onSubmit() {
+    if (this.studentForm.valid) {
+      console.log('Formulário completo', this.studentForm.value);
+    }
+  }
 
   goToLogin(event: Event) {
     event.preventDefault();

@@ -1,9 +1,11 @@
 <div class="container my-5">
   <h2 class="text-center mb-4">Formulário para registro do aluno</h2>
-  <form>
+
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
     <fieldset class="border p-4 mb-4 rounded">
       <legend class="w-auto">Informações Gerais</legend>
 
+      <!-- Nome e Sobrenome -->
       <div class="row mb-5">
         <div class="col-md-6">
           <label for="nome" class="form-label">Nome</label>
@@ -11,6 +13,7 @@
             type="text"
             class="form-control"
             id="nome"
+            formControlName="nome"
             placeholder="Ex: Mattheaus"
           />
         </div>
@@ -20,11 +23,13 @@
             type="text"
             class="form-control"
             id="sobrenome"
+            formControlName="sobrenome"
             placeholder="Ex: Hoffman"
           />
         </div>
       </div>
 
+      <!-- Email e Telefone -->
       <div class="row mb-5">
         <div class="col-md-6">
           <label for="email" class="form-label">E-mail</label>
@@ -32,6 +37,7 @@
             type="email"
             class="form-control"
             id="email"
+            formControlName="email"
             placeholder="exemplo@exemplo.com"
           />
         </div>
@@ -41,35 +47,36 @@
             type="tel"
             class="form-control"
             id="telefone"
+            formControlName="telefone"
             placeholder="(00) 00000-0000"
           />
         </div>
       </div>
 
+      <!-- Data de nascimento e Gênero -->
       <div class="row mb-3">
         <div class="col-md-6">
           <label class="form-label">Data de Nascimento</label>
-          <div class="d-flex gap-2">
-            <mat-form-field appearance="outline" class="datepicker-small w-100">
-              <mat-label>Data de nascimento</mat-label>
-              <input
-                matInput
-                [matDatepicker]="picker"
-                placeholder="dd/mm/aaaa"
-              />
-              <mat-datepicker-toggle
-                matIconSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
+          <mat-form-field appearance="outline" class="datepicker-small w-100">
+            <mat-label>Data de nascimento</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dataNascimento"
+              placeholder="dd/mm/aaaa"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
 
         <div class="col-md-6">
           <label for="genero" class="form-label">Gênero</label>
-          <select class="form-select" id="genero">
-            <option disabled selected>Selecione</option>
+          <select class="form-select" id="genero" formControlName="genero">
+            <option value="" disabled>Selecione</option>
             <option>Masculino</option>
             <option>Feminino</option>
             <option>Outro</option>
@@ -77,6 +84,7 @@
         </div>
       </div>
 
+      <!-- CPF, Série/Ano, Semestre -->
       <div class="row mb-5">
         <div class="col-md-4">
           <label for="cpfAluno" class="form-label">CPF do Aluno</label>
@@ -84,6 +92,7 @@
             type="text"
             class="form-control"
             id="cpfAluno"
+            formControlName="cpfAluno"
             placeholder="000.000.000-00"
           />
         </div>
@@ -93,23 +102,33 @@
             type="text"
             class="form-control"
             id="serieAno"
+            formControlName="serieAno"
             placeholder="ex: 9 ano"
           />
         </div>
         <div class="col-md-4">
           <label for="semestre" class="form-label">Semestre</label>
-          <select class="form-select" id="semestre">
-            <option disabled selected>Selecione</option>
+          <select class="form-select" id="semestre" formControlName="semestre">
+            <option value="" disabled>Selecione</option>
             <option>1º Semestre</option>
             <option>2º Semestre</option>
           </select>
         </div>
-        
-      </div>
-      <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary col-md-3">Próximo</button>
       </div>
 
+      <!-- Botão -->
+      <div class="d-flex justify-content-end">
+        <button
+          type="submit"
+          class="btn btn-primary col-md-3"
+          [disabled]="!studentForm.valid"
+          (click)="goToLogin($event)"
+        >
+          Próximo
+        </button>
+      </div>
+
+      <!-- Link para login -->
       <div class="text-center mt-4">
         <a href="#" (click)="goToLogin($event)">Já é cadastrado?</a>
       </div>

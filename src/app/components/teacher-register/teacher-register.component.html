@@ -54,6 +54,7 @@
             class="form-control"
             id="email"
             name="email"
+            email
             placeholder="exemplo@exemplo.com"
             required
             [(ngModel)]="teacher.email"
@@ -73,7 +74,7 @@
             class="form-control"
             id="telefone"
             name="telefone"
-            placeholder="(00) 00000-0000"
+            placeholder="(00) 90000-0000"
             required
             [(ngModel)]="teacher.telefone"
             #telefone="ngModel"
@@ -86,7 +87,6 @@
             <div *ngIf="telefone.errors?.['required']">
               Telefone é obrigatório.
             </div>
-            <div *ngIf="telefone.errors?.['pattern']">Telefone inválido.</div>
           </div>
         </div>
       </div>

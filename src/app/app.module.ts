@@ -21,6 +21,7 @@ import localePt from '@angular/common/locales/pt';
 import { TeacherRegisterComponent } from './components/teacher-register/teacher-register.component';
 import { LoginComponent } from './components/login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { StudentLoggedComponent } from './pages/student-logged/student-logged.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -32,6 +33,7 @@ registerLocaleData(localePt);
     StudentRegisterComponent,
     TeacherRegisterComponent,
     LoginComponent,
+    StudentLoggedComponent
   ],
   imports: [
     BrowserModule,

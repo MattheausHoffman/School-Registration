@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './student-register.component.css',
 })
 export class StudentRegisterComponent {
-  @Output() loginRequest = new EventEmitter<void>();
+  @Output() goToLoginEvent = new EventEmitter<void>();
   studentForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -33,11 +33,11 @@ export class StudentRegisterComponent {
 
   goToLogin(event: Event) {
     event.preventDefault();
-    this.loginRequest.emit();
+    this.goToLoginEvent.emit();
   }
 
   isInvalid(controlName: string): boolean {
-  const control = this.studentForm.get(controlName);
-  return !!control && control.invalid && control.touched;
-}
+    const control = this.studentForm.get(controlName);
+    return !!control && control.invalid && control.touched;
+  }
 }

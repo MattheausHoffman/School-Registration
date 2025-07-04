@@ -4,12 +4,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  @Output() formSelect = new EventEmitter<'student' | 'teacher'>();
+  @Output() formSelect = new EventEmitter<
+    'student-register' | 'teacher-register'
+  >();
 
-  selectForm(type: 'student' | 'teacher') {
+  selectForm(type: 'student-register' | 'teacher-register') {
     this.formSelect.emit(type);
   }
 }

@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'School-Registration';
-  selectedForm: 'student' | 'teacher' | null = 'student';
+  selectedForm: 'student-register' | 'teacher-register' | 'student' | 'teacher' | 'student-logged' | null = 'student-register';
+
+  onLoginSuccess() {
+    this.selectedForm = 'student-logged';
+  }
+
+  showLogin() {
+    this.selectedForm = 'student';
+  }
 }

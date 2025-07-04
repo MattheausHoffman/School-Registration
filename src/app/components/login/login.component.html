@@ -1,5 +1,11 @@
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh">
-  <div class="card p-5 shadow-sm" style="width: 100%; max-width: 400px; border-radius: 12px;">
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="min-height: 70vh"
+>
+  <div
+    class="card p-5 shadow-sm"
+    style="width: 100%; max-width: 400px; border-radius: 12px"
+  >
     <h4 class="text-center mb-5">Login</h4>
 
     <form>
@@ -11,6 +17,8 @@
           id="email"
           class="form-control"
           placeholder="email@exemplo.com"
+          [(ngModel)]="email"
+          name="email"
           required
         />
       </div>
@@ -21,6 +29,8 @@
         <input
           type="password"
           id="senha"
+          [(ngModel)]="password"
+          name="password"
           class="form-control"
           placeholder="********"
           required
@@ -29,10 +39,16 @@
 
       <!-- Botão Entrar -->
       <div class="d-grid mt-5">
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!email || !password"
+          (click)="login()"
+        >
+          Entrar
+        </button>
       </div>
 
-      <!-- Link para voltar -->
       <div class="text-center mt-4">
         <a href="#" (click)="goBack($event)">Voltar para cadastro</a>
       </div>

@@ -1,5 +1,23 @@
 <app-header (formSelect)="selectedForm = $event"></app-header>
 
-<app-home [selectedForm]="selectedForm"></app-home>
+<app-student-register
+  *ngIf="selectedForm === 'student-register'"
+  (goToLoginEvent)="selectedForm = 'student'"
+></app-student-register>
+
+<app-teacher-register
+  *ngIf="selectedForm === 'teacher-register'"
+  (loginRequest)="selectedForm = 'student'"
+></app-teacher-register>
+
+<app-login
+  *ngIf="selectedForm === 'student'"
+  (loginSuccess)="onLoginSuccess()"
+  (backToRegister)="selectedForm = 'student-register'"
+></app-login>
+
+<app-student-logged
+  *ngIf="selectedForm === 'student-logged'"
+></app-student-logged>
 
 <app-footer></app-footer>

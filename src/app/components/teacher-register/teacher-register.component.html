@@ -166,8 +166,8 @@
             <div *ngIf="cpfProfessor.errors?.['required']">
               CPF é obrigatório.
             </div>
-            <div *ngIf="cpfProfessor.errors?.['pattern']">
-              Formato de CPF inválido.
+            <div *ngIf="isCpfInvalido" class="text-danger small">
+              CPF inválido.
             </div>
           </div>
         </div>

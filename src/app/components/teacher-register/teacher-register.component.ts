@@ -9,7 +9,7 @@ import { cpfValidator } from '../../models/cpf-format';
   styleUrl: './teacher-register.component.css',
 })
 export class TeacherRegisterComponent {
-  @Output() loginRequest = new EventEmitter<void>();
+  @Output() goToLoginEvent = new EventEmitter<void>();
   teacherForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -24,16 +24,16 @@ export class TeacherRegisterComponent {
     });
   }
 
-  goToLogin(event: Event): void {
-    event.preventDefault();
-
-    if (this.teacherForm.invalid) {
-      return;
+  onSubmit() {
+    if (this.teacherForm.valid) {
+      console.log('Formulário completo do Professor', this.teacherForm.value);
+      this.goToLoginEvent.emit();
     }
+  }
 
-    console.log('Formulário completo do Professor', this.teacherForm.value);
-
-    this.loginRequest.emit();
+  goToLogin(event: Event) {
+    event.preventDefault();
+    this.goToLoginEvent.emit();
   }
 
   isInvalid(controlName: string): boolean {

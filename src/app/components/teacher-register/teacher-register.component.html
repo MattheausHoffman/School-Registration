@@ -2,7 +2,7 @@
   <h2 class="text-center mb-4">Formulário para registro do professor</h2>
   <form
     [formGroup]="teacherForm"
-    (ngSubmit)="goToLogin($event)"
+    (ngSubmit)="onSubmit()"
     novalidate
   >
     <fieldset class="border p-4 mb-4 rounded">

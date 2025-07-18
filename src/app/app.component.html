@@ -7,7 +7,7 @@
 
 <app-teacher-register
   *ngIf="selectedForm === 'teacher-register'"
-  (loginRequest)="selectedForm = 'login'"
+  (goToLoginEvent)="selectedForm = 'login'"
 ></app-teacher-register>
 
 <app-login

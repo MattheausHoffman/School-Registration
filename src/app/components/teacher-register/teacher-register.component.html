@@ -1,8 +1,8 @@
 <div class="container my-5">
   <h2 class="text-center mb-4">Formulário para registro do professor</h2>
   <form
-    #teacherForm="ngForm"
-    (ngSubmit)="goToLogin($event, teacherForm)"
+    [formGroup]="teacherForm"
+    (ngSubmit)="goToLogin($event)"
     novalidate
   >
     <fieldset class="border p-4 mb-4 rounded">
@@ -15,13 +15,11 @@
             type="text"
             class="form-control"
             id="nome"
-            name="nome"
+            formControlName="nome"
             placeholder="Ex: Mattheaus"
-            required
-            [(ngModel)]="teacher.nome"
-            #nome="ngModel"
+            [ngClass]="{ 'is-invalid': isInvalid('nome') }"
           />
-          <div *ngIf="nome.invalid && nome.touched" class="text-danger small">
+          <div *ngIf="isInvalid('nome')" class="text-danger small">
             Nome é obrigatório.
           </div>
         </div>
@@ -31,16 +29,11 @@
             type="text"
             class="form-control"
             id="sobrenome"
-            name="sobrenome"
+            formControlName="sobrenome"
             placeholder="Ex: Hoffman"
-            required
-            [(ngModel)]="teacher.sobrenome"
-            #sobrenome="ngModel"
+            [ngClass]="{ 'is-invalid': isInvalid('sobrenome') }"
           />
-          <div
-            *ngIf="sobrenome.invalid && sobrenome.touched"
-            class="text-danger small"
-          >
+          <div *ngIf="isInvalid('sobrenome')" class="text-danger small">
             Sobrenome é obrigatório.
           </div>
         </div>
@@ -53,16 +46,13 @@
             type="email"
             class="form-control"
             id="email"
-            name="email"
-            email
+            formControlName="email"
             placeholder="exemplo@exemplo.com"
-            required
-            [(ngModel)]="teacher.email"
-            #email="ngModel"
+            [ngClass]="{ 'is-invalid': isInvalid('email') }"
           />
-          <div *ngIf="email.invalid && email.touched" class="text-danger small">
-            <div *ngIf="email.errors?.['required']">E-mail é obrigatório.</div>
-            <div *ngIf="email.errors?.['email']">
+          <div *ngIf="isInvalid('email')" class="text-danger small">
+            <div *ngIf="teacherForm.get('email')?.errors?.['required']">E-mail é obrigatório.</div>
+            <div *ngIf="teacherForm.get('email')?.errors?.['email']">
               Formato de e-mail inválido.
             </div>
           </div>
@@ -73,20 +63,13 @@
             type="text"
             class="form-control"
             id="telefone"
-            name="telefone"
+            formControlName="telefone"
             placeholder="(00) 90000-0000"
-            required
-            [(ngModel)]="teacher.telefone"
-            #telefone="ngModel"
             mask="(00) 00000-0000"
+            [ngClass]="{ 'is-invalid': isInvalid('telefone') }"
           />
-          <div
-            *ngIf="telefone.invalid && telefone.touched"
-            class="text-danger small"
-          >
-            <div *ngIf="telefone.errors?.['required']">
-              Telefone é obrigatório.
-            </div>
+          <div *ngIf="isInvalid('telefone')" class="text-danger small">
+            Telefone é obrigatório.
           </div>
         </div>
       </div>
@@ -101,10 +84,9 @@
                 matInput
                 [matDatepicker]="picker"
                 placeholder="dd/mm/aaaa"
-                name="dataNascimento"
-                required
-                [(ngModel)]="teacher.dataNascimento"
-                #dataNascimento="ngModel"
+                formControlName="dataNascimento"
+                id="dataNascimento"
+                [ngClass]="{ 'is-invalid': isInvalid('dataNascimento') }"
               />
               <mat-datepicker-toggle
                 matIconSuffix
@@ -113,10 +95,7 @@
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
-          <div
-            *ngIf="dataNascimento.invalid && dataNascimento.touched"
-            class="text-danger small"
-          >
+          <div *ngIf="isInvalid('dataNascimento')" class="text-danger small">
             Data de nascimento é obrigatória.
           </div>
         </div>
@@ -126,20 +105,15 @@
           <select
             class="form-select"
             id="genero"
-            name="genero"
-            required
-            [(ngModel)]="teacher.genero"
-            #genero="ngModel"
+            formControlName="genero"
+            [ngClass]="{ 'is-invalid': isInvalid('genero') }"
           >
             <option value="" disabled selected>Selecione</option>
             <option>Masculino</option>
             <option>Feminino</option>
             <option>Outro</option>
           </select>
-          <div
-            *ngIf="genero.invalid && genero.touched"
-            class="text-danger small"
-          >
+          <div *ngIf="isInvalid('genero')" class="text-danger small">
             Gênero é obrigatório.
           </div>
         </div>
@@ -152,21 +126,16 @@
             type="text"
             class="form-control"
             id="cpfProfessor"
-            name="cpfProfessor"
+            formControlName="cpfProfessor"
             placeholder="000.000.000-00"
-            required
-            [(ngModel)]="teacher.cpfProfessor"
-            #cpfProfessor="ngModel"
             mask="000.000.000-00"
+            [ngClass]="{ 'is-invalid': isInvalid('cpfProfessor') }"
           />
-          <div
-            *ngIf="cpfProfessor.invalid && cpfProfessor.touched"
-            class="text-danger small"
-          >
-            <div *ngIf="cpfProfessor.errors?.['required']">
+          <div *ngIf="isInvalid('cpfProfessor')" class="text-danger small">
+            <div *ngIf="teacherForm.get('cpfProfessor')?.errors?.['required']">
               CPF é obrigatório.
             </div>
-            <div *ngIf="isCpfInvalido" class="text-danger small">
+            <div *ngIf="teacherForm.get('cpfProfessor')?.errors?.['cpfInvalido']">
               CPF inválido.
             </div>
           </div>
@@ -184,9 +153,7 @@
       </div>
 
       <div class="text-center mt-4">
-        <a href="#" (click)="goToLogin($event, teacherForm)"
-          >Já é cadastrado?</a
-        >
+        <a href="#" (click)="goToLogin($event)">Já é cadastrado?</a>
       </div>
     </fieldset>
   </form>

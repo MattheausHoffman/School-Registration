@@ -2,16 +2,16 @@
 
 <app-student-register
   *ngIf="selectedForm === 'student-register'"
-  (goToLoginEvent)="selectedForm = 'student'"
+  (goToLoginEvent)="selectedForm = 'login'"
 ></app-student-register>
 
 <app-teacher-register
   *ngIf="selectedForm === 'teacher-register'"
-  (loginRequest)="selectedForm = 'student'"
+  (loginRequest)="selectedForm = 'login'"
 ></app-teacher-register>
 
 <app-login
-  *ngIf="selectedForm === 'student'"
+  *ngIf="selectedForm === 'login'"
   (loginSuccess)="onLoginSuccess()"
   (backToRegister)="selectedForm = 'student-register'"
 ></app-login>

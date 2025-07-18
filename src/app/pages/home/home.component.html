@@ -2,12 +2,12 @@
   <div class="d-flex justify-content-center register-container">
     <app-student-register
       *ngIf="selectedForm === 'student'"
-      (loginRequest)="changeToLogin()"
+      (goToLoginEvent)="selectedForm = 'login'"
     ></app-student-register>
 
     <app-teacher-register
       *ngIf="selectedForm === 'teacher'"
-      (loginRequest)="changeToLogin()"
+      (goToLoginEvent)="selectedForm = 'login'"
     ></app-teacher-register>
 
     <app-login

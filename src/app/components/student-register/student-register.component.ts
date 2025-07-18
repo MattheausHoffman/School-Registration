@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { cpfValidator } from '../../models/cpf-format';
 
 @Component({
   selector: 'app-student-register',
@@ -19,7 +20,7 @@ export class StudentRegisterComponent {
       telefone: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       genero: ['', Validators.required],
-      cpfAluno: ['', Validators.required],
+      cpfAluno: ['', [Validators.required, cpfValidator]],
       serieAno: ['', Validators.required],
       semestre: ['', Validators.required],
     });
@@ -27,7 +28,8 @@ export class StudentRegisterComponent {
 
   onSubmit() {
     if (this.studentForm.valid) {
-      console.log('Formulário completo', this.studentForm.value);
+      console.log('Formulário completo do Aluno', this.studentForm.value);
+      this.goToLoginEvent.emit();
     }
   }
 

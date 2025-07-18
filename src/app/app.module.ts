@@ -22,6 +22,7 @@ import { TeacherRegisterComponent } from './components/teacher-register/teacher-
 import { LoginComponent } from './components/login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentLoggedComponent } from './pages/student-logged/student-logged.component';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -46,7 +47,8 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    HttpClientModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

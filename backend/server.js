@@ -25,32 +25,27 @@ db.connect((err) => {
 // Tabelas
 db.query(`CREATE TABLE IF NOT EXISTS students (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(100),
-  sobrenome VARCHAR(100),
-  email VARCHAR(100),
-  telefone VARCHAR(20),
-  dataNascimento DATE,
-  genero VARCHAR(20),
-  cpfAluno VARCHAR(14),
+  userId INT NOT NULL FOREIGN KEY REFERENCES users(id),
   serieAno VARCHAR(20),
   semestre VARCHAR(10)
 )`);
 
 db.query(`CREATE TABLE IF NOT EXISTS teachers (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(100),
-  sobrenome VARCHAR(100),
-  email VARCHAR(100),
-  telefone VARCHAR(20),
-  dataNascimento DATE,
-  genero VARCHAR(20),
-  cpfProfessor VARCHAR(14)
+  userId INT NOT NULL FOREIGN KEY REFERENCES users(id),
 )`);
+//colocar turma que dá aula
 
 db.query(`CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100),
+  sobrenome VARCHAR(100),
   email VARCHAR(100) UNIQUE,
-  password VARCHAR(100)
+  telefone VARCHAR(20),
+  dataNascimento DATE,
+  genero VARCHAR(20),
+  cpf VARCHAR(14) UNIQUE,
+  password VARCHAR(100),
 )`);
 
 // ROTAS

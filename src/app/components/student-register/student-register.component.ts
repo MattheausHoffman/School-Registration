@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { cpfValidator } from '../../models/cpf-format';
 import { StudentService } from '../../services/student/student.service';
-import { Student } from '../../models/student';
+import { UsersService } from '../../services/users/users.service'; // adicione este import
 
 @Component({
   selector: 'app-student-register',
@@ -14,7 +14,11 @@ export class StudentRegisterComponent {
   @Output() goToLoginEvent = new EventEmitter<void>();
   studentForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private studentService: StudentService) {
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentService,
+    private usersService: UsersService // adicione este serviço
+  ) {
     this.studentForm = this.fb.group({
       nome: ['', Validators.required],
       sobrenome: ['', Validators.required],
@@ -22,7 +26,7 @@ export class StudentRegisterComponent {
       telefone: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       genero: ['', Validators.required],
-      cpfAluno: ['', [Validators.required, cpfValidator]],
+      cpf: ['', [Validators.required, cpfValidator]],
       serieAno: ['', Validators.required],
       semestre: ['', Validators.required],
     });
@@ -30,23 +34,43 @@ export class StudentRegisterComponent {
 
   onSubmit() {
     if (this.studentForm.valid) {
-      console.log('Formulário completo do Aluno', this.studentForm.value);
-      this.goToLoginEvent.emit();
+      // Dados para a tabela users
+      const userPayload = {
+        nome: this.studentForm.value.nome,
+        sobrenome: this.studentForm.value.sobrenome,
+        email: this.studentForm.value.email,
+        telefone: this.studentForm.value.telefone,
+        dataNascimento: this.studentForm.value.dataNascimento,
+        genero: this.studentForm.value.genero,
+        cpf: this.studentForm.value.cpf,
+        password: this.studentForm.value.password || '123456789', // Add password field
+      };
 
-      const student: Student = this.studentForm.value;
-
-      this.studentService.createStudent(student).subscribe({
-        next: (res) => {
-          console.log('Aluno cadastrado com sucesso:', res);
-          this.goToLoginEvent.emit(); // só vai para o login se der certo
+      this.usersService.createUsers(userPayload).subscribe({
+        next: (userRes: any) => {
+          // Dados para a tabela students
+          const studentPayload = {
+            userId: userRes.id,
+            serieAno: this.studentForm.value.serieAno,
+            semestre: this.studentForm.value.semestre,
+          };
+          this.studentService.createStudent(studentPayload).subscribe({
+            next: (studentRes) => {
+              console.log('Aluno cadastrado com sucesso:', studentRes);
+              this.goToLoginEvent.emit();
+            },
+            error: (err) => {
+              console.error('Erro ao cadastrar aluno:', err);
+            },
+          });
         },
         error: (err) => {
-          console.error('Erro ao cadastrar aluno:', err);
+          console.error('Erro ao cadastrar usuário:', err);
         },
       });
     } else {
       console.warn('Formulário inválido');
-      this.studentForm.markAllAsTouched(); // marca todos os campos para mostrar os erros
+      this.studentForm.markAllAsTouched();
     }
   }
 

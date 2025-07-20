@@ -106,15 +106,15 @@
       <!-- CPF, Série/Ano, Semestre -->
       <div class="row mb-5">
         <div class="col-md-4">
-          <label for="cpfAluno" class="form-label">CPF do Aluno</label>
+          <label for="cpf" class="form-label">CPF do Aluno</label>
           <input
             type="text"
             class="form-control"
-            id="cpfAluno"
-            formControlName="cpfAluno"
+            id="cpf"
+            formControlName="cpf"
             placeholder="000.000.000-00"
             mask="000.000.000-00"
-            [ngClass]="{ 'is-invalid': isInvalid('cpfAluno') }"
+            [ngClass]="{ 'is-invalid': isInvalid('cpf') }"
           />
           <div class="invalid-feedback">CPF é obrigatório.</div>
         </div>

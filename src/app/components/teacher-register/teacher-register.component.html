@@ -1,10 +1,6 @@
 <div class="container my-5">
   <h2 class="text-center mb-4">Formulário para registro do professor</h2>
-  <form
-    [formGroup]="teacherForm"
-    (ngSubmit)="onSubmit()"
-    novalidate
-  >
+  <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()" novalidate>
     <fieldset class="border p-4 mb-4 rounded">
       <legend class="w-auto">Informações Gerais</legend>
 
@@ -51,7 +47,9 @@
             [ngClass]="{ 'is-invalid': isInvalid('email') }"
           />
           <div *ngIf="isInvalid('email')" class="text-danger small">
-            <div *ngIf="teacherForm.get('email')?.errors?.['required']">E-mail é obrigatório.</div>
+            <div *ngIf="teacherForm.get('email')?.errors?.['required']">
+              E-mail é obrigatório.
+            </div>
             <div *ngIf="teacherForm.get('email')?.errors?.['email']">
               Formato de e-mail inválido.
             </div>
@@ -119,37 +117,82 @@
         </div>
       </div>
 
-      <div class="row mb-5 align-items-end">
-        <div class="col-md-6">
-          <label for="cpfProfessor" class="form-label">CPF do Professor</label>
+      <div class="row mb-5">
+        <div class="col-md-4">
+          <label for="cpf" class="form-label">CPF do Professor</label>
           <input
             type="text"
             class="form-control"
-            id="cpfProfessor"
-            formControlName="cpfProfessor"
+            id="cpf"
+            formControlName="cpf"
             placeholder="000.000.000-00"
             mask="000.000.000-00"
-            [ngClass]="{ 'is-invalid': isInvalid('cpfProfessor') }"
+            [ngClass]="{ 'is-invalid': isInvalid('cpf') }"
           />
-          <div *ngIf="isInvalid('cpfProfessor')" class="text-danger small">
-            <div *ngIf="teacherForm.get('cpfProfessor')?.errors?.['required']">
+          <div *ngIf="isInvalid('cpf')" class="invalid-feedback">
+            <div *ngIf="teacherForm.get('cpf')?.errors?.['required']">
               CPF é obrigatório.
             </div>
-            <div *ngIf="teacherForm.get('cpfProfessor')?.errors?.['cpfInvalido']">
+            <div *ngIf="teacherForm.get('cpf')?.errors?.['cpfInvalido']">
               CPF inválido.
             </div>
           </div>
         </div>
-
-        <div class="col-md-6 d-flex justify-content-center">
-          <button
-            type="submit"
-            class="btn btn-primary w-100"
-            [disabled]="teacherForm.invalid"
-          >
-            Próximo
-          </button>
+        <div class="col-md-4">
+          <label for="serieAno" class="form-label">Série/Ano</label>
+          <input
+            type="text"
+            class="form-control"
+            id="serieAno"
+            formControlName="serieAno"
+            placeholder="Ex: 6º Ano, 1º EM"
+            [ngClass]="{ 'is-invalid': isInvalid('serieAno') }"
+          />
+          <div *ngIf="isInvalid('serieAno')" class="invalid-feedback">
+            Série/Ano é obrigatório.
+          </div>
         </div>
+        <div class="col-md-4">
+          <label for="disciplina" class="form-label">Matérias</label>
+          <mat-form-field class="w-100">
+            <mat-select
+              id="disciplina"
+              formControlName="disciplina"
+              multiple
+              placeholder="Selecione as matérias"
+              [ngClass]="{ 'is-invalid': isInvalid('disciplina') }"
+            >
+              <mat-option value="Matemática">Matemática</mat-option>
+              <mat-option value="Gramática">Gramática</mat-option>
+              <mat-option value="Inglês">Inglês</mat-option>
+              <mat-option value="Espanhol">Espanhol</mat-option>
+              <mat-option value="História">História</mat-option>
+              <mat-option value="Geografia">Geografia</mat-option>
+              <mat-option value="Sociologia">Sociologia</mat-option>
+              <mat-option value="Filosofia">Filosofia</mat-option>
+              <mat-option value="Física">Física</mat-option>
+              <mat-option value="Química">Química</mat-option>
+              <mat-option value="Biologia">Biologia</mat-option>
+              <mat-option value="Artes">Artes</mat-option>
+              <mat-option value="Educação Física">Educação Física</mat-option>
+              <mat-option value="Redação">Redação</mat-option>
+              <mat-option value="Literatura">Literatura</mat-option>
+            </mat-select>
+            <mat-error *ngIf="isInvalid('disciplina')">
+              Selecione ao menos uma matéria
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button
+          type="submit"
+          class="btn btn-primary col-md-3"
+          [disabled]="teacherForm.invalid"
+        >
+          Próximo
+        </button>
       </div>
 
       <div class="text-center mt-4">

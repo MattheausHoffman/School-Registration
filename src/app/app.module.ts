@@ -23,6 +23,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentLoggedComponent } from './pages/student-logged/student-logged.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -48,7 +50,9 @@ registerLocaleData(localePt);
     MatDialogModule,
     FormsModule,
     NgxMaskDirective,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

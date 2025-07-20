@@ -33,8 +33,9 @@ db.query(`CREATE TABLE IF NOT EXISTS students (
 db.query(`CREATE TABLE IF NOT EXISTS teachers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT NOT NULL FOREIGN KEY REFERENCES users(id),
+  serieAno VARCHAR(20),
+  disciplina VARCHAR(100),
 )`);
-//colocar turma que dá aula
 
 db.query(`CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,

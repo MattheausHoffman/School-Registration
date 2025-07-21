@@ -83,11 +83,11 @@ app.post('/teachers', (req, res) => {
 
 app.post('/users', (req, res) => {
   const user = req.body;
-  console.log('Recebido do front-end:', user); // 👈 Adiciona esse log
+  console.log('Recebido do front-end:', user);
 
   db.query('INSERT INTO users SET ?', user, (err, result) => {
     if (err) {
-      console.error('Erro ao inserir usuário:', err); // 👈 E esse também
+      console.error('Erro ao inserir usuário:', err);
       return res.status(500).send(err);
     }
     res.send({ message: 'Usuário cadastrado com sucesso', id: result.insertId });

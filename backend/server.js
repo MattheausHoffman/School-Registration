@@ -9,11 +9,11 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Conexão com MySQL via WAMP
+// Conexão com MySQL
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '', // padrão do WAMP
+  password: '',
   database: 'school_registration'
 });
 
@@ -23,8 +23,7 @@ const db = mysql.createPool({
 // });
 
 
-// Tabelas
-// Criação da tabela USERS
+// Tabelas - Criação da tabela USERS
 db.query(`CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100),

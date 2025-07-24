@@ -45,7 +45,7 @@ export class TeacherRegisterComponent {
         dataNascimento: this.teacherForm.value.dataNascimento,
         genero: this.teacherForm.value.genero,
         cpf: this.teacherForm.value.cpf,
-        password: this.teacherForm.value.password || '123456789', // Add password field
+        password: this.generateRandomPassword()
       };
 
       this.usersService.createUsers(userPayload).subscribe({
@@ -77,6 +77,15 @@ export class TeacherRegisterComponent {
       this.teacherForm.markAllAsTouched();
     }
   }
+
+  generateRandomPassword(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let password = '';
+  for (let i = 0; i < 8; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return password;
+}
 
   goToLogin(event: Event) {
     event.preventDefault();

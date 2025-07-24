@@ -43,12 +43,11 @@ export class StudentRegisterComponent {
         dataNascimento: this.studentForm.value.dataNascimento,
         genero: this.studentForm.value.genero,
         cpf: this.studentForm.value.cpf,
-        password: this.studentForm.value.password || '123456789', // Add password field
+        password: this.generateRandomPassword()
       };
 
       this.usersService.createUsers(userPayload).subscribe({
         next: (userRes: any) => {
-          // Dados para a tabela students
           const studentPayload = {
             userId: userRes.id,
             serieAno: this.studentForm.value.serieAno,
@@ -73,6 +72,16 @@ export class StudentRegisterComponent {
       this.studentForm.markAllAsTouched();
     }
   }
+
+  generateRandomPassword(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let password = '';
+  for (let i = 0; i < 8; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return password;
+}
+
 
   goToLogin(event: Event) {
     event.preventDefault();

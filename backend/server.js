@@ -103,7 +103,7 @@ app.post("/users", async (req, res) => {
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
-    const senhaOriginal = user.password
+    const senhaOriginal = user.password;
 
     user.password = hashedPassword;
 
@@ -130,17 +130,17 @@ app.post("/users", async (req, res) => {
 
 async function enviarEmailComSenha(destinatario, senhaOriginal) {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
-      user: 'registro.escolar.estudos@gmail.com',
-      pass: 'rmgr slso ymdo qgut',
+      user: "registro.escolar.estudos@gmail.com",
+      pass: "rmgr slso ymdo qgut",
     },
   });
 
   const mailOptions = {
-    from: 'registro.escolar.estudos@gmail.com',
+    from: "registro.escolar.estudos@gmail.com",
     to: destinatario,
-    subject: 'Cadastro realizado com sucesso!',
+    subject: "Cadastro realizado com sucesso!",
     html: `
       <h3>Bem-vindo ao sistema!</h3>
       <p>Sua senha temporária é: <strong>${senhaOriginal}</strong></p>

@@ -13,16 +13,13 @@ app.use(bodyParser.json());
 
 // Conexão com MySQL
 const db = mysql.createPool({
-  host: "localhost",
+  host: "127.0.0.1",
+  port: 3306,
   user: "root",
   password: "",
   database: "school_registration",
 });
 
-// db.connect((err) => {
-//   if (err) throw err;
-//   console.log('Conectado ao MySQL');
-// });
 
 // Tabelas - Criação da tabela USERS
 db.query(
@@ -73,7 +70,7 @@ db.query(
   }
 );
 
-// ROTAS
+// ===== ROTAS EXISTENTES =====
 app.post("/students", (req, res) => {
   const data = req.body;
   db.query("INSERT INTO students SET ?", data, (err, result) => {
@@ -126,6 +123,48 @@ app.post("/users", async (req, res) => {
     console.error("Erro ao gerar hash:", error);
     res.status(500).send({ error: "Erro interno ao cadastrar usuário" });
   }
+});
+
+// ===== NOVA ROTA: LOGIN (valida e-mail + senha com o BD) =====
+app.post("/auth/login", (req, res) => {
+  const { email, password } = req.body || {};
+  if (!email || !password) {
+    return res.status(400).json({ ok: false, message: "Parâmetros ausentes" });
+  }
+
+  db.query(
+    "SELECT id, password FROM users WHERE email = ?",
+    [email],
+    async (err, rows) => {
+      if (err) {
+        console.error("Erro ao consultar usuário:", err);
+        return res.status(500).json({ ok: false, message: "Erro interno" });
+      }
+
+      if (!rows || rows.length === 0) {
+        return res.status(401).json({ ok: false, message: "Credenciais inválidas" });
+      }
+
+      const user = rows[0];
+
+      try {
+        // Compare com hash salvo
+        const matches = await bcrypt.compare(password, user.password);
+
+        // Caso seu BD ainda tenha senha em texto plano (não recomendado):
+        // const matches = (password === user.password);
+
+        if (!matches) {
+          return res.status(401).json({ ok: false, message: "Credenciais inválidas" });
+        }
+
+        return res.json({ ok: true, userId: user.id });
+      } catch (e) {
+        console.error("Erro no compare:", e);
+        return res.status(500).json({ ok: false, message: "Erro interno" });
+      }
+    }
+  );
 });
 
 async function enviarEmailComSenha(destinatario, senhaOriginal) {

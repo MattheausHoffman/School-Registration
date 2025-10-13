@@ -8,7 +8,7 @@
   >
     <h4 class="text-center mb-5">Login</h4>
 
-    <form>
+    <form (ngSubmit)="login()">
       <!-- Email -->
       <div class="mb-4">
         <label for="email" class="form-label">Email</label>
@@ -48,7 +48,6 @@
           type="submit"
           class="btn btn-primary"
           [disabled]="!email || !password"
-          (click)="login()"
         >
           Entrar
         </button>

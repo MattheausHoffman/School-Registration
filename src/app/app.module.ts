@@ -25,6 +25,7 @@ import { StudentLoggedComponent } from './pages/student-logged/student-logged.co
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -53,6 +54,7 @@ registerLocaleData(localePt);
     HttpClientModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

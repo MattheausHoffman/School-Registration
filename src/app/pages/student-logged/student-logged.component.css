@@ -1,0 +1,20 @@
+.portal {
+  background-color: #F7F7FB;
+}
+
+.hero-section {
+  background-color: #FBFBFB;
+}
+
+.mat-card{
+  background-color: #ffffff;
+  border: solid 1px #E3E3E8;
+  border-radius: 8px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.modalidade, .prof-title {
+  font-size: 13px;
+  color: #888FAA;
+}
